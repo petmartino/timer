@@ -19,7 +19,7 @@
             text-align: center;
         }
         .example {
-            
+            margin-left: auto;
             margin-right: auto;
             margin-top: 20px;
             width: 70%;
@@ -61,34 +61,49 @@
         </header>
         
         <div id="main">
-            
+            <div class="example">
+                <div class="label">Count up from now</div>
+                <div id="demo1" class="demo">00:00:00</div>
+            </div>
             <div class="example">
                 <div class="label">Click to toggle (start/stop)</div>
                 <div id="demo2" class="demo">00:00:00</div>
-                <a href="#" id="start_stop">Start Stop</a>
-                <a href="#" id="resette">resetearse</a>
             </div>
-            
+            <div class="example">
+                <div class="label">Click to reset</div>
+                <div id="demo3" class="demo">00:00:00</div>
+            </div>
+            <div class="example">
+                <div class="label">Count up from seed time (10000000 milliseconds)</div>
+                <div id="demo4" class="demo">00:00:00</div>
+            </div>
+            <div class="example">
+                <div class="label">2 second update interval</div>
+                <div id="demo5" class="demo">00:00:00</div>
+            </div>
+            <div class="example">
+                <div class="label">Custom format using <a href="https://github.com/nene/jintervals">jintervals</a></div>
+                <div id="demo6" class="demo">00:00:00</div>
+            </div>
         </div>
         
         <footer></footer>
     </div>
     
-    <script src="js/jquery-1.9.0.js"></script>
-    <script src="js/jquery.stopwatch.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <script src="../jquery.stopwatch.js"></script>
     <script>
         $(document).ready(function() {
-            $('#demo2').stopwatch().stopwatch('start');
-       
-            $('#resette').click(function(){
-                $('#demo2').stopwatch('reset');
-
+            $('#demo1').stopwatch().stopwatch('start');
+            $('#demo2').stopwatch().click(function(){ 
+                $(this).stopwatch('toggle');
             });
-
-            $('#start_stop').click(function(){ 
-                $('#demo2').stopwatch('toggle');
-            });
-            
+            $('#demo3').stopwatch().click(function(){ 
+                $(this).stopwatch('reset');
+            }).stopwatch('start');
+            $('#demo4').stopwatch({startTime: 10000000}).stopwatch('start');
+            $('#demo5').stopwatch({updateInterval: 2000}).stopwatch('start');
+            $('#demo6').stopwatch({format: '{Minutes} and {s.}'}).stopwatch('start');
         });
     </script>
 </body>
